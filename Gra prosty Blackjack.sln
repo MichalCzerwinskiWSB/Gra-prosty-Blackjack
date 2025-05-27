@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gra prosty Blackjack", "Gra prosty Blackjack\Gra prosty Blackjack.csproj", "{436B64D9-2467-4C10-BAB8-80BFD390876E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{436B64D9-2467-4C10-BAB8-80BFD390876E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436B64D9-2467-4C10-BAB8-80BFD390876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436B64D9-2467-4C10-BAB8-80BFD390876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436B64D9-2467-4C10-BAB8-80BFD390876E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8B3FC2D-1253-4F79-9C80-4AC91AE6FCD2}
+	EndGlobalSection
+EndGlobal
