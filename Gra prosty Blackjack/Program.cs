@@ -9,7 +9,6 @@ public class Card
     public Card(string number)
     {
         Number = number;
-        //Console.WriteLine(number);
     }
 
     public int Value()
@@ -69,22 +68,89 @@ public class Deck
         }
     }
 
+    public Card Deal()
+    {
+        Card top = cards[0];
+        cards.RemoveAt(0);
+        return top;
+    }
+
 
 }
 
 public class Hand
 {
+    public List<Card> Cards = new List<Card>();
+
+    public void Add(Card card)
+    {
+        Cards.Add(card);
+    }
+    public int Value()
+    {
+        int value = 0;
+        int aces = 0;
+
+        foreach(var card in Cards)
+        {
+            value += card.Value();
+            if (card.Number == "A") aces++;
+        }
+
+        while (value > 21 && aces > 0)
+        {
+            value -= 10;
+            aces--;
+        }
+
+        return value;
+    }
+
+    public override string ToString()
+    {
+        return string.Join(", ", Cards);
+    }
+
 
 }
 
 public class Player
 {
+    public Hand hand = new Hand();
+
+    public void Play(Deck deck)
+    {
+        Console.WriteLine($"Twoja wartosc: {hand} (watrosc: {hand.Value()})");
+        if (hand.Value() >= 21)
+        {
+               
+        }
+
+        Console.WriteLine("Dobierz karte albo nie dobieraj (zostaw/dobierz)");
+        string input = Console.ReadLine().ToLower();
+        if (input == "zostaw")
+        {
+            
+        }
+        else if(input == "dobierz")
+        {
+            hand.Add(deck.Deal());
+        }
+    }
 
 }
 
-public class Dealer
+class Dealer
 {
+    public Hand Hand = new Hand();
 
+    public void Play(Deck deck)
+    {
+        while (Hand.Value() < 17)
+        {
+            Hand.Add(deck.Deal());
+        }
+    }
 }
 
 class Program
@@ -92,8 +158,34 @@ class Program
     static void Main()
     {
         Deck deck = new Deck();
-        deck.PrintAllCards();
-        
+        Player player = new Player();
+        Dealer dealer = new Dealer();
+
+        player.hand.Add(deck.Deal());
+        player.hand.Add(deck.Deal());
+
+        dealer.Hand.Add(deck.Deal());
+        dealer.Hand.Add(deck.Deal());
+
+        Console.WriteLine("Dealer pokazuje: " + dealer.Hand.Cards[0]);
+
+        player.Play(deck);
+        if (player.hand.Value() > 21)
+        {
+            Console.WriteLine("Przegrales.");
+            return;
+        }
+
+        dealer.Play(deck);
+        Console.WriteLine($"Karty dealera: {dealer.Hand} (value: {dealer.Hand.Value()})");
+
+        if (dealer.Hand.Value() > 21 || player.hand.Value() > dealer.Hand.Value())
+            Console.WriteLine("Wygrywasz!");
+        else if (player.hand.Value() == dealer.Hand.Value())
+            Console.WriteLine("Push.");
+        else
+            Console.WriteLine("Dealer wygrywa.");
+
 
 
     }
